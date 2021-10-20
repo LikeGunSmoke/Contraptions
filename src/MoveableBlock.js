@@ -3,10 +3,11 @@ import { useThree } from '@react-three/fiber';
 import { useBox } from '@react-three/cannon';
 import { useDrag } from 'react-use-gesture';
 
-const MoveableBlock = ({args, color, dim, ...props}) => {
+
+const MoveableBlock = ({args, color, ...props}) => {
 
   const [position] = useState([0, 0, 0]);
-  const [ref, api] = useBox(() => ({...props, args: dim}))
+  const [ref, api] = useBox(() => ({args, ...props}))
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const drag = useDrag(({ offset:[x, y] }) => {

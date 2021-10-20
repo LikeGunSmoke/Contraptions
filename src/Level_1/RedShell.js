@@ -1,11 +1,24 @@
-import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei/core/useGLTF';
+import React from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import { useSphere } from '@react-three/cannon';
 
-export default function RedShell(props) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF('3DModels/RedShell/scene.gltf')
+export default function RedShell({ ...props }) {
+
+  const [group, api] = useSphere(() => ({
+    type: 'Kinematic',
+    args: 1,
+    ...props
+  }));
+
+  useFrame(({ clock }) =>
+    api.position.set(Math.sin(clock.getElapsedTime()) * -4.5, -8.4, 0) +
+    api.rotation.set(0, Math.sin(clock.getElapsedTime()) * 10, 0)
+    );
+
+  const { nodes, materials } = useGLTF('../../3DModels/Level_1/RedShell/scene.gltf');
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group name='RedShell' ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[-1.57, 66.33, -0.12]} rotation={[0, -Math.PI / 2, 0]} scale={[2.65, 3.48, 2.68]}>
@@ -20,7 +33,7 @@ export default function RedShell(props) {
         </group>
       </group>
     </group>
-  )
-}
+  );
+};
 
-useGLTF.preload('3DModels/RedShell/scene.gltf')
+useGLTF.preload('../../3DModels/Level_1/RedShell/scene.gltf');

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mario Head Cap
+* source:	https://sketchfab.com/3d-models/mario-head-cap-3c395d7d3c7b432ba3d726e675cac06f
+* author:	ruthromantic (https://sketchfab.com/ruthromantic)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mario Head Cap" (https://sketchfab.com/3d-models/mario-head-cap-3c395d7d3c7b432ba3d726e675cac06f) by ruthromantic (https://sketchfab.com/ruthromantic) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
