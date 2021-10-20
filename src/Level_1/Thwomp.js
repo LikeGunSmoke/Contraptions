@@ -1,11 +1,20 @@
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei/core/useGLTF'
+import React from 'react';
+import { useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
+import { useBox } from '@react-three/cannon';
 
-export default function Thwomp(props) {
-  const group = useRef()
-  const { nodes, materials } = useGLTF('3DModels/Thwomp/scene.gltf')
+export default function Thwomp({ ...props }) {
+
+  const [group, api] = useBox(() => ({
+    type: 'Kinematic',
+    ...props,
+  }));
+
+  useFrame(({ clock }) => api.position.set(-3, Math.sin(clock.getElapsedTime()) * 5, 0));
+
+  const { nodes, materials } = useGLTF('../../3DModels/Level_1/Thwomp/scene.gltf');
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group name='Thwomp' ref={group} {...props} scale={[0.001, 0.001, 0.001]} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[15.48, 1053.6, 0]} rotation={[-Math.PI, 0, 0]} scale={[-1, 1, 1]}>
@@ -17,7 +26,7 @@ export default function Thwomp(props) {
         </group>
       </group>
     </group>
-  )
-}
+  );
+};
 
-useGLTF.preload('3DModels/Thwomp/scene.gltf')
+useGLTF.preload('../../3DModels/Level_1/Thwomp/scene.gltf');

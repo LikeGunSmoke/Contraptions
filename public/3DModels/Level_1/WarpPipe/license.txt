@@ -1,0 +1,11 @@
+Model Information:
+* title:	Super Mario Pipe
+* source:	https://sketchfab.com/3d-models/super-mario-pipe-9f300ce966154eaab90b5156ce6865bc
+* author:	Unlostly (https://sketchfab.com/Unlostly)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Super Mario Pipe" (https://sketchfab.com/3d-models/super-mario-pipe-9f300ce966154eaab90b5156ce6865bc) by Unlostly (https://sketchfab.com/Unlostly) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
