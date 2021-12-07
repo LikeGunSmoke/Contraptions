@@ -10,7 +10,7 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';
 import { useDispatch } from 'react-redux';
-import { fire_l, fire_r } from '../state/actions.js';
+import { fire_l, fire_r } from '../state/actions/level_1/actions.js';
 
 export default function FireFlower({ ...props }) {
 

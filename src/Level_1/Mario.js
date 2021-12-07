@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useSphere } from '@react-three/cannon';
 import { useSelector, useDispatch } from 'react-redux';
-import { reset, win } from '../state/actions.js';
+import { reset, win } from '../state/actions/level_1/actions.js';
 
 export default function Mario({ ...props }) {
 
@@ -42,7 +42,7 @@ export default function Mario({ ...props }) {
   }, [
         api.position, api.rotation, api.velocity, api.angularVelocity, resetGame, warp
      ]
-  )
+  );
 
   const { nodes } = useGLTF('../../3DModels/Level_1/Mario/scene.gltf');
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { resetGame, reset } from '../state/actions.js';
+import { resetGame, reset } from '../state/actions/level_1/actions.js';
 import img from './images/restart.svg';
 
 export default function RestartBtn({ ...props }) {

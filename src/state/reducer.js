@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { POWERUP, SHOWSHROOM, WARP, FIRE_R, FIRE_L, RESET, RESETGAME, WIN, NEXT } from './actions.js';
+import { POWERUP, SHOWSHROOM, WARP, FIRE_R, FIRE_L, RESET, RESETGAME, WIN, NEXT, TUTORIAL, SPEECHBUBBLE, DISABLEBUBBLE } from './actions/level_1/actions.js';
 
 let initalState = {
 
@@ -10,7 +10,9 @@ let initalState = {
     {name: 'fireball_r', isVisible: false, shoot: false},
     {name: 'fireball_l', isVisible: false, shoot: false},
     {name: 'reset', reset: false},
-    {name: 'win', win: false}
+    {name: 'win', win: false},
+    {name: 'tutorial', tutorial: true},
+    {name: 'speechBubble', speechBubble: false}
   ],
 };
 
@@ -29,6 +31,33 @@ export const levelsReducer = (state = initalState.level, action) => {
 };
 
 export const level1Reducer = (state = initalState.level1, action) => {
+
+  if (action.type === TUTORIAL) {
+    return state.map((state) => {
+      if (state.name === 'tutorial') {
+        return {...state, tutorial: false};
+      };
+      return state;
+    });
+  };
+
+  if (action.type === SPEECHBUBBLE) {
+    return state.map((state) => {
+      if (state.name === 'speechBubble') {
+        return {...state, speechBubble: true};
+      };
+      return state;
+    });
+  };
+
+  if (action.type === DISABLEBUBBLE) {
+    return state.map((state) => {
+      if (state.name === 'speechBubble') {
+        return {...state, speechBubble: false};
+      };
+      return state;
+    });
+  };
 
   if (action.type === POWERUP) {
     return state.map((state) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useThree } from '@react-three/fiber';
 import { usePlane } from '@react-three/cannon';
 import { useDispatch } from 'react-redux';
-import { resetGame } from '../state/actions.js';
+import { resetGame } from '../state/actions/level_1/actions.js';
 
 export default function Ground({ ...props }) {
 

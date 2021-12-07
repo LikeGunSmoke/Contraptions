@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';
 import { useDispatch, useSelector } from 'react-redux';
-import { showShroom } from '../state/actions.js';
+import { showShroom } from '../state/actions/level_1/actions.js';
 
 export default function QuestionBlock({ ...props }) {
 

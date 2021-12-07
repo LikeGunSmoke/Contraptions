@@ -2,7 +2,7 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';
 import { useDispatch } from 'react-redux';
-import { warp } from '../state/actions.js';
+import { warp } from '../state/actions/level_1/actions.js';
 
 export default function WarpPipe(props) {
 

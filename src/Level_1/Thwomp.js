@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';

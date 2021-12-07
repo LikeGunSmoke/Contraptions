@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';
 import { useSelector, useDispatch } from 'react-redux';
-import { powerUp } from '../state/actions.js';
+import { powerUp } from '../state/actions/level_1/actions.js';
 
 export default function Mushroom({ ...props }) {
 
