@@ -9,7 +9,7 @@ export default function Start({ ...props }) {
 
   useEffect(() => {
     tl.to(button.current, {scale: 1.2, x: 5, textDecoration: 'underline'});
-  })
+  });
 
   return (
     <svg version="1.1" style={{position: 'absolute', top: '15%', left: '15%',height: '65vh', width: '65vw', zIndex: 3}} viewBox="0 0 428.13 266.52" xmlns="http://www.w3.org/2000/svg">

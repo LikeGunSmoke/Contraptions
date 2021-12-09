@@ -22,7 +22,7 @@ export default function WarpPipe(props) {
   const { nodes, materials } = useGLTF('../../3DModels/Level_1/WarpPipe/scene.gltf');
 
   return (
-    <group name='WarpPipe' ref={group} {...props} dispose={null}>
+    <group name='WarpPipe' ref={group} {...props} dispose={null} >
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[407.62, 590.39, -100.55]} rotation={[1.89, 0.88, -2.05]} scale={[100, 100, 100]}>

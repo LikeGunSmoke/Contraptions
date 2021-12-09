@@ -9,7 +9,9 @@ export default function Thwomp({ ...props }) {
     ...props,
   }));
 
-  useFrame(({ clock }) => api.position.set(-3, Math.sin(clock.getElapsedTime()) * 5, 0));
+  useFrame(({ clock }) => {
+    api.position.set(-3, (Math.sin(clock.getElapsedTime()) + 2.45)  * 2.9, 0)}
+  );
 
   const { nodes, materials } = useGLTF('../../3DModels/Level_1/Thwomp/scene.gltf');
   return (
