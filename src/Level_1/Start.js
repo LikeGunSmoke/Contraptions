@@ -4,11 +4,18 @@ import { gsap } from 'gsap';
 export default function Start({ ...props }) {
 
   const button = useRef();
-
-  const tl = gsap.timeline({paused: true});
+  const tl = useRef();
 
   useEffect(() => {
-    tl.to(button.current, {scale: 1.2, x: 5, textDecoration: 'underline'});
+
+    tl.current = gsap.timeline({paused: true});
+
+    tl.current.to(button.current, {scale: 1.2, x: 5, textDecoration: 'underline'});
+
+    return () => {
+      tl.current.kill();
+    };
+
   });
 
   return (
@@ -24,7 +31,7 @@ export default function Start({ ...props }) {
         <path d="m120.14 50.736v50.283s-2.0113 20.784 10.727 20.784h81.794l-14.079-12.068h-57.658s-4.6931 1.3409-5.3635-8.0453c-0.67044-9.3862-0.67044-38.215-0.67044-38.215z" fill="#dadada"/>
         </g>
       </g>
-      <g onMouseEnter={() => tl.play(0)} onMouseLeave={() => tl.reverse()}
+      <g onMouseEnter={() => tl.current.play(0)} onMouseLeave={() => tl.current.reverse()}
       ref={button} transform="translate(11.677 -.34345)">
         <g transform="matrix(.5758 0 0 .49987 253.35 260.21)" fill="#480707">
         <ellipse cx="-73.111" cy="-109.77" rx="39.723" ry="43.159" fill="#480707"/>

@@ -9,13 +9,21 @@ export default function Win({ ...props }) {
   const star1 = useRef();
   const star2 = useRef();
   const star3 = useRef();
-  const tl = gsap.timeline({repeat: -1});
+  const tl = useRef();
 
   useEffect(() => {
-    tl.to(star1.current, {y: 85, x: -40, opacity: 1, scale: 1.2, duration: 2});
-    tl.to(star3.current, {y: 85, x: 85, opacity: 1, scale: 1.2, duration: 2});
-    tl.to(star2.current, {y: 75, opacity: 1, scale: 1.5, duration: 2});
-  });
+
+    tl.current = gsap.timeline({repeat: -1});
+
+    tl.current.to(star1.current, {y: 85, x: -40, opacity: 1, scale: 1.2, duration: 2,});
+    tl.current.to(star3.current, {y: 85, x: 85, opacity: 1, scale: 1.2, duration: 2});
+    tl.current.to(star2.current, {y: 75, opacity: 1, scale: 1.5, duration: 2});
+
+    return () => {
+      tl.current.kill();
+    };
+
+  }, []);
 
   return (
     <svg style={{position: 'absolute', height: '65vh', width: '65vw', top: '15%', left: '15%', zIndex: 3}} version="1.1" viewBox="0 0 229.14 142.64" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

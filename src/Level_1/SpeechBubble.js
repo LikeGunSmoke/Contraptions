@@ -5,20 +5,28 @@ export default function SpeechBubble({ ...props }) {
 
   const bubble = useRef();
   const text = useRef();
-  const tl = gsap.timeline();
-
-  const textTL = () => {
-    let tl = gsap.timeline({repeat: -1, yoyo: true, duration: 2});
-    tl.to([text.current], {transformOrigin: '50% 50%', rotate: '20deg'})
-    .to([text.current], {transformOrigin: '50% 50%', rotate: '-20deg'});
-    return tl;
-  };
+  const tl = useRef()
+  const textTL = useRef();
 
   useEffect(() => {
-    tl.to([bubble.current], {duration: 3, scale: 2, opacity: 1}, 0.25);
-    tl.add(textTL(), 0.25);
-    tl.to([bubble.current], {opacity: 0, scale: 0.8, duration: 2}, 4);
-  }, [tl])
+
+    tl.current = gsap.timeline();
+
+    textTL.current = gsap.timeline({repeat: 2, yoyo: true, duration: 0.8});
+
+    tl.current.to(bubble.current, {duration: 3, scale: 2, opacity: 1}, 0.25);
+
+    textTL.current.to(text.current, {transformOrigin: '50% 50%', rotate: '20deg'})
+    .to(text.current, {transformOrigin: '50% 50%', rotate: '-20deg'}, 0.25);
+
+    tl.current.to([bubble.current], {opacity: 0, scale: 0.8, duration: 2}, 4);
+
+    return () => {
+      tl.current.kill();
+      textTL.current.kill();
+    };
+
+  }, []);
 
   return (
     <svg ref={bubble} style={{position: 'fixed', top:'30%', left: '30%', height: '10vh', width: '10vw', zIndex: 3, opacity: 0}} width="293.5mm" height="220.18mm" version="1.1" viewBox="0 0 293.5 220.18" xmlns="http://www.w3.org/2000/svg">

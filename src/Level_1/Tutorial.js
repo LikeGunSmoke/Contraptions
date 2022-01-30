@@ -20,48 +20,43 @@ export default function Tutorial() {
   const outerRing_u = useRef();
   const upperPointer = useRef();
   const lowerPointer = useRef();
+  const firstSlide = useRef();
+  const secondSlide = useRef();
+  const thirdSlide = useRef();
 
   const dispatch = useDispatch();
 
-  const firstSlide = gsap.timeline();
-  const secondSlide = gsap.timeline({paused: true});
-  const thirdSlide = gsap.timeline({paused: true});
-
-  const lowerCirclesTL = () => {
-    let tl = gsap.timeline();
-    tl.fromTo([center_l.current, innerRing_l.current, middleRing_l.current, outerRing_l.current], {opacity: 0}, {opacity: 1, stagger: 0.05})
-    tl.to([center_l.current, innerRing_l.current, middleRing_l.current, outerRing_l.current], {opacity: 0, stagger: 0.05})
-    return tl;
-  };
-  const upperCirclesTL = () => {
-    let tl = gsap.timeline();
-    tl.fromTo([center_u.current, innerRing_u.current, middleRing_u.current, outerRing_u.current], {opacity: 0}, {opacity: 1, stagger: 0.05})
-    tl.to([center_u.current, innerRing_u.current, middleRing_u.current, outerRing_u.current], {opacity: 0, stagger: 0.05})
-    return tl;
-  };
-  const pointerTL = (ref) => {
-    let tl = gsap.timeline();
-    tl.to(ref.current, {duration: 0.5, scale: 0.7, opacity: 1})
-    .to(ref.current, {duration: 0.5, scale: 1, ease: 'back'})
-    .to(ref.current, {duration: 1, opacity: 0});
-    return tl;
-  };
-
   useEffect(() => {
 
-    firstSlide.fromTo(first.current, {scale: 0}, {duration: 1, opacity: 1, scale: 1,  ease: 'back'});
+    firstSlide.current = gsap.timeline();
+    secondSlide.current = gsap.timeline({paused: true});
+    thirdSlide.current = gsap.timeline({paused: true});
 
-    secondSlide.to(first.current, {duration: 0.1, opacity: 0})
-    secondSlide.fromTo(second.current, {scale: 0}, {duration: 1, opacity: 1, scale: 1,  ease: 'back'});
-    secondSlide.add(pointerTL(lowerPointer), 0);
-    secondSlide.add(lowerCirclesTL(), 0.2);
-    secondSlide.add(pointerTL(upperPointer), 1);
-    secondSlide.add(upperCirclesTL(), 1.2);
+    firstSlide.current.fromTo(first.current, {scale: 0}, {duration: 1, opacity: 1, scale: 1,  ease: 'back'});
 
-    thirdSlide.to(second.current, {duration: 0.1, opacity: 0});
-    thirdSlide.fromTo(third.current, {scale: 0}, {duration: 1, scale: 1, opacity: 1, ease: 'back'});
+    secondSlide.current.to(first.current, {duration: 0.1, opacity: 0}, 0)
+    .fromTo(second.current, {scale: 0}, {duration: 1, opacity: 1, scale: 1,  ease: 'back'}, 0)
+    .to(lowerPointer.current, {duration: 0.5, scale: 0.7, opacity: 1}, 0)
+    .to(lowerPointer.current, {duration: 0.5, scale: 1, ease: 'back'}, 0.5)
+    .to(lowerPointer.current, {duration: 1, opacity: 0}, 1)
+    .fromTo([center_l.current, innerRing_l.current, middleRing_l.current, outerRing_l.current], {opacity: 0}, {duration: 1, opacity: 1, stagger: 0.05}, 0.2)
+    .to([center_l.current, innerRing_l.current, middleRing_l.current, outerRing_l.current], {duration: 1, opacity: 0, stagger: 0.05}, 0.4)
+    .to(upperPointer.current, {duration: 0.5, scale: 0.7, opacity: 1}, 1)
+    .to(upperPointer.current, {duration: 0.5, scale: 1, ease: 'back'}, 1.5)
+    .to(upperPointer.current, {duration: 1, opacity: 0}, 2)
+    .fromTo([center_u.current, innerRing_u.current, middleRing_u.current, outerRing_u.current], {opacity: 0}, {opacity: 1, stagger: 0.05}, 1)
+    .to([center_u.current, innerRing_u.current, middleRing_u.current, outerRing_u.current], {opacity: 0, stagger: 0.05}, 1.2);
 
-  }, [firstSlide, secondSlide, thirdSlide]);
+    thirdSlide.current.to(second.current, {duration: 0.1, opacity: 0})
+    .fromTo(third.current, {scale: 0}, {duration: 1, scale: 1, opacity: 1, ease: 'back'});
+
+    return () => {
+      firstSlide.current.kill();
+      secondSlide.current.kill();
+      thirdSlide.current.kill();
+    };
+
+  }, []);
 
   return (
     <Container>
@@ -89,12 +84,12 @@ export default function Tutorial() {
       <FirstSlide ref={first} >
         <Title>Tutorial</Title>
         <Text>Your mission is to get your character to the goal!</Text>
-        <Button onClick={() => secondSlide.play() + firstSlide.progress(1)} >NEXT</Button>
+        <Button onClick={() => secondSlide.current.play() + firstSlide.current.progress(1)} >NEXT</Button>
       </FirstSlide>
       <SecondSlide ref={second} >
         <Title>Actions</Title>
         <Text>Some items on the board do things. Click around and see what you find!</Text>
-        <Button onClick={() => thirdSlide.play() + secondSlide.progress(1)} >NEXT</Button>
+        <Button onClick={() => thirdSlide.current.play() + secondSlide.current.progress(1)} >NEXT</Button>
       </SecondSlide>
       <ThirdSlide ref={third} >
         <Title>Good Luck!</Title>
